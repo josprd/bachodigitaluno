@@ -162,6 +162,7 @@
             justify-content: space-around;
             margin: 30px 0;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .tech-item {
@@ -172,6 +173,24 @@
             border: 1px solid rgba(0, 255, 136, 0.3);
             border-radius: 20px;
             background: rgba(0, 255, 136, 0.1);
+        }
+
+        .audio-tech-item {
+            color: #ff6b35;
+            font-size: 0.9em;
+            margin: 5px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            background: rgba(255, 107, 53, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .audio-tech-item:hover {
+            background: rgba(255, 107, 53, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
         }
 
         .btn-container {
@@ -273,31 +292,32 @@
             90% { opacity: 0.3; }
             100% { transform: translateY(100vh); opacity: 0; }
         }
-        .secret-btn {
+
+        .audio-btn {
             position: fixed;
             bottom: 20px;
-            right: 15px;
-            background: rgba(30, 30, 30, 0.8);
-            color: #666;
-            border: 1px solid rgba(100, 100, 100, 0.3);
-            padding: 10px 15px;
-            font-size: 12px;
-            border-radius: 8px;
+            left: 20px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 13px;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 1000;
-            opacity: 0.6;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
             white-space: nowrap;
             touch-action: manipulation;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            font-weight: 600;
         }
 
-        .secret-btn:hover,
-        .secret-btn:active {
-            opacity: 1;
-            background: rgba(50, 50, 50, 0.9);
-            color: #ccc;
-            transform: scale(1.05);
+        .audio-btn:hover,
+        .audio-btn:active {
+            background: linear-gradient(45deg, #e55a2b, #e8851a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -359,11 +379,10 @@
                 padding: 4px 8px;
             }
 
-            .secret-btn {
-                bottom: 15px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 10px;
+            .audio-tech-item {
+                font-size: 0.8em;
+                padding: 6px 10px;
+                margin: 3px;
             }
         }
 
@@ -395,9 +414,9 @@
                 padding: 10px 20px;
             }
 
-            .secret-btn {
-                font-size: 9px;
-                padding: 6px 10px;
+            .audio-btn {
+                font-size: 11px;
+                padding: 8px 12px;
             }
         }
     </style>
@@ -429,6 +448,7 @@
             <div class="tech-item">📊 Big Data</div>
             <div class="tech-item">🧠 Machine Learning</div>
             <div class="tech-item">📈 Predictivo</div>
+            <div class="audio-tech-item" onclick="playSecretAudio()">🎵 el diavlo en patines</div>
         </div>
         
         <div class="btn-container">
@@ -441,9 +461,6 @@
             🌟 Revolucionando la educación con tecnología avanzada
         </p>
     </div>
-
-    <button class="secret-btn" onclick="playSecretAudio()">el diavlo en patines</button>
-
     <audio id="secretAudio" preload="none">
         <source src="ALMIGHTYSOLIDA.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
@@ -480,6 +497,7 @@
                 network.appendChild(node);
                 nodes.push(node);
             }
+            
             for (let i = 0; i < 15; i++) {
                 const connection = document.createElement('div');
                 connection.className = 'connection';
@@ -491,6 +509,7 @@
                 network.appendChild(connection);
             }
         }
+
         function createBinaryRain() {
             const rain = document.getElementById('binaryRain');
             const chars = ['0', '1', '∞', '∑', 'α', 'β', 'γ', 'δ', '∆', '∇'];

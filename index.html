@@ -267,6 +267,30 @@
             90% { opacity: 0.3; }
             100% { transform: translateY(100vh); opacity: 0; }
         }
+
+        .secret-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(30, 30, 30, 0.8);
+            color: #666;
+            border: 1px solid rgba(100, 100, 100, 0.3);
+            padding: 8px 12px;
+            font-size: 11px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0.6;
+            backdrop-filter: blur(5px);
+        }
+
+        .secret-btn:hover {
+            opacity: 1;
+            background: rgba(50, 50, 50, 0.9);
+            color: #ccc;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -309,9 +333,29 @@
         </p>
     </div>
 
+    <button class="secret-btn" onclick="playSecretAudio()">el diavlo en patines</button>
+
+    <audio id="secretAudio" preload="none">
+        <source src="ALMIGHTYSOLIDA.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
     <script>
         function handleAccess() {
             window.location.href = 'waza.html';
+        }
+
+        function playSecretAudio() {
+            const audio = document.getElementById('secretAudio');
+            if (audio.paused) {
+                audio.play().catch(function(error) {
+                    console.log('Error al reproducir audio:', error);
+                    alert('Error al cargar el audio. Asegúrate de que el archivo ALMIGHTYSOLIDA.mp3 esté en la misma carpeta.');
+                });
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
         }
 
         function createNeuralNetwork() {
@@ -328,7 +372,6 @@
                 nodes.push(node);
             }
             
-            // Crear conexiones
             for (let i = 0; i < 15; i++) {
                 const connection = document.createElement('div');
                 connection.className = 'connection';
@@ -341,7 +384,6 @@
             }
         }
 
-        // Crear lluvia de código binario
         function createBinaryRain() {
             const rain = document.getElementById('binaryRain');
             const chars = ['0', '1', '∞', '∑', 'α', 'β', 'γ', 'δ', '∆', '∇'];
